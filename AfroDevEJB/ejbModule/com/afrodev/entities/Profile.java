@@ -7,8 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Profile implements Serializable{
@@ -42,8 +41,7 @@ public class Profile implements Serializable{
 	@Column(length = 50)
 	private String instagram;
 	
-	
-	@OneToOne
+	@ManyToOne
 	private User user;
 	
 	public Profile() {
@@ -138,5 +136,6 @@ public class Profile implements Serializable{
 	public void setInstagram(String instagram) {
 		this.instagram = instagram;
 	}
+	
 	
 }

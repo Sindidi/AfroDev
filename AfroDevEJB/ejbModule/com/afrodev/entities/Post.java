@@ -29,9 +29,6 @@ public class Post implements Serializable {
 	private String status;
 	private String commentaire;
 	
-	@ManyToOne
-	@JoinColumn(name = "idUser")
-	private User user;
 	
 	public Post() {
 		super();
@@ -75,13 +72,6 @@ public class Post implements Serializable {
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
 	
 
 }

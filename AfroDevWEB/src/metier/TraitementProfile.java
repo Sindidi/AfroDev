@@ -3,26 +3,31 @@ package metier;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import metier.entites.Profile;
-import metier.entites.Users;
-import metier.session.ProfileInterfaceLocale;
-import metier.session.UsersInterfaceLocale;
+import com.afrodev.entities.Profile;
+import com.afrodev.session.ImplementationLocal;
+
+
 
 /**
  * Servlet implementation class TraitementRegistre
  */
 @WebServlet("/TraitementProfile")
+@TransactionManagement(TransactionManagementType.CONTAINER)
 /*@WebServlet(name="TraitementRegistre", urlPatterns={"*.do"})*/
 public class TraitementProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@EJB
-	private ProfileInterfaceLocale profile;
+	
+	@EJB 
+	private ImplementationLocal local;
+	 
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -56,10 +61,9 @@ public class TraitementProfile extends HttpServlet {
 		String youtube=request.getParameter("youtube");
 		String linkedin=request.getParameter("linkedin");		
 		String instagram=request.getParameter("instagram");
-		profile.addProfile(new Profile(status, company, website, location, skills, githubusername, bio, twitter, facebook, youtube, linkedin, instagram));
+		
+		local.addProfile(new Profile(status, company, website, location, skills, githubusername, bio, twitter, facebook, youtube, linkedin, instagram));
 		request.getRequestDispatcher("profileSession.jsp").forward(request, response);
-		
-		
 	}
 
 }

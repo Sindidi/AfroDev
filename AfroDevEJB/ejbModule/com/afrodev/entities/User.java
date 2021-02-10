@@ -8,10 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 
 @Entity
 public class User implements Serializable{
@@ -35,13 +34,9 @@ public class User implements Serializable{
 	private String password;
 	private String avatar;
 	
-	@OneToMany(mappedBy = "user")
-	private List<Post> post;
-	
-	
-	
-	@OneToOne(mappedBy="user")
-    private Profile profile ;
+	@OneToMany
+	@JoinColumn(name = "idProfile")
+	private List <Profile> user;
 	
 	public User() {
 		super();
@@ -98,11 +93,6 @@ public class User implements Serializable{
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-	public List<Post> getPost() {
-		return post;
-	}
-	public void setPost(List<Post> post) {
-		this.post = post;
-	}
+
 	
 }

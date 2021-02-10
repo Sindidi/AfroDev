@@ -9,8 +9,11 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org
 			<class>com.afrodev.entities.User</class>
 			<class>com.afrodev.entities.Profile</class>
 			<class>com.afrodev.entities.Post</class>
-						<properties>
-				<property name="javax.persistence.schema-generation.database.action" value="update"/>
+ 			<properties>
+				<property name="javax.persistence.schema-generation.database.action" value="create"/>
 			</properties>
+		<!-- <properties>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+		</properties> -->
 	</persistence-unit>
 </persistence>

@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import metier.entites.Profile;
+import com.afrodev.entities.User;
+import com.afrodev.session.ImplementationLocal;
+
+/*import metier.entites.Profile;
 import metier.entites.Users;
 import metier.session.ProfileInterfaceLocale;
-import metier.session.UsersInterfaceLocale;
+import metier.session.UsersInterfaceLocale;*/
 
 /**
  * Servlet implementation class TraitementRegistre
@@ -21,9 +24,9 @@ import metier.session.UsersInterfaceLocale;
 /*@WebServlet(name="TraitementRegistre", urlPatterns={"*.do"})*/
 public class TraitementRegistre extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@EJB
-	private UsersInterfaceLocale users;
-	private ProfileInterfaceLocale profile;
+	
+	@EJB 
+	private ImplementationLocal local;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,9 +54,9 @@ public class TraitementRegistre extends HttpServlet {
 		String email=request.getParameter("email");
 		String photo=request.getParameter("photo");
 		String password=request.getParameter("password");
-		users.addUsers(new Users(pname, name, username, email, photo, password));
-		request.getRequestDispatcher("create-profile.jsp").forward(request, response);
-
+		
+		 local.addUser(new User(pname, name, username, email, password, photo));
+		 request.getRequestDispatcher("create-profile.jsp").forward(request, response);
 	}
 
 }
